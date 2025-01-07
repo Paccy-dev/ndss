@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pandemic extends Model
 {
     protected $fillable = [
-        'name',
+        'full_name',
         'description',
         'discovery_date',
         'discovery_location'
