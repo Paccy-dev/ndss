@@ -8,7 +8,7 @@
     <h2> Pandemic Create</h2> 
     <form action="{{ route('pandemics.create')}}" method="POST">
         @csrf
-        <input type="text" name="name" >
+        <input type="text" name="full_name" >
         <textarea type="text" name="description"></textarea>
         <input type="date" name="discover_date">
         <input type="text" name="discovery_location">

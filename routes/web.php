@@ -1,21 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PandemicController;
 use App\Http\Controllers\HealthCenterController;
 use App\Http\Controllers\InfectionCaseController;
 
+
+Route::get('/charts', [GeneralController::class, 'index'] )->name('charts');
+
+
 Route::get('/', function () {
     return view('dashboard');
-});
-Route::get('/charts', function () {
-    return view('charts');
-});
-Route::get('/dashboard', function () {
-    return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

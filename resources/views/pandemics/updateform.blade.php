@@ -9,7 +9,7 @@
     <form action="{{ route('pandemics.update', $pandemic->id)}}" method="POST">
         @csrf
         @method('PUT')
-        <input type="text" name="name" value="{{ $pandemic->full_name}}">
+        <input type="text" name="full_name" value="{{ $pandemic->full_name}}">
         <input type="text" name="description" value="{{$pandemic->description}}">
         <button type="submit">Update</button>
         <a href="{{ route('pandemics.index')}}" class="btn">Cancel</a>

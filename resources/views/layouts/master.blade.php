@@ -147,16 +147,13 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="{{ route('dashboard')}}" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="{{ route('dashboard') }}" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts <span class="fa arrow"></span></a>
+                            <a href="{{ route('charts') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Charts <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Flot Charts</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Morris.js Charts</a>
+                                    <a href="{{ route('charts') }}">Morris.js Charts</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -164,24 +161,21 @@
                         <li>
                         </li>
                         <li>
-                            <a href="{{ route('patients.index')}}"><i class="fa fa-edit fa-fw"></i> Patients</a>
+                            <a href="{{ route('patients.index')}}"><i class="fa fa-heart fa-fw"></i> Patients</a>
                         </li>
                         <li>
-                            <a href="{{ route('pandemics.index')}}"><i class="fa fa-edit fa-fw"></i> Pandemics</a>
+                            <a href="{{ route('pandemics.index')}}"><i class="fa fa-bug fa-fw"></i> Pandemics</a>
                         </li>
 
                         <li>
-                            <a href="{{ route('healthCenters.index')}}"><i class="fa fa-edit fa-fw"></i> Health Centers</a>
+                            <a href="{{ route('healthCenters.index')}}"><i class="fa fa-hospital-o fa-fw"></i> Health Centers</a>
                         </li>
                         <li>
-                            <a href="{{ route('infectionCases.index')}}"><i class="fa fa-table fa-fw"></i> Infection Cases</a>
+                            <a href="{{ route('infectionCases.index')}}"><i class="fa fa-stethoscope fa-fw"></i> Infection Cases</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Users <span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-users fa-fw"></i> Users <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">Flot Charts</a>
-                                </li>
                                 <li>
                                     <a href="morris.html">Morris.js Charts</a>
                                 </li>
@@ -213,13 +207,13 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">@yield('content_header')</h1>
+                            <h1 class="page-header">@yield('page_header')</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
                     <!-- /.row -->
 
-                    @yield('content')
+                    @yield('page_content')
 
                 </div>
                 <!-- /.container-fluid -->
@@ -241,10 +235,26 @@
         <!-- Morris Charts JavaScript -->
         @vite(['resources/js/raphael.min.js'])
         @vite(['resources/js/morris.min.js'])
-        <!-- @vite(['resources/js/morris-data.js']) -->
+        {{-- @vite(['resources/js/morris-data.js']) --}}
 
         <!-- Custom Theme JavaScript -->
         @vite(['resources/js/startmin.js'])
+
+        <!-- DataTables JavaScript -->
+        @vite(['resources/js/dataTables/jquery.dataTables.min.js'])
+        @vite(['resources/js/dataTables/dataTables.bootstrap.min.js'])
+
+        <!-- Custom Theme JavaScript -->
+        @vite(['resources/js/startmin.js'])'
+
+        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').DataTable({
+                    responsive: true
+                });
+            });
+        </script>
 
     </body>
 

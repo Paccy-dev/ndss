@@ -2,10 +2,10 @@
 @section('page_title')
     Charts
 @stop
-@section('content_header')
-    Flot JS Chart
+@section('page_header')
+    Morris JS Chart
 @stop
-@section('content')
+@section('page_content')
     <div class="row">
         <div class="col-lg-6">
             <div class="panel panel-default">

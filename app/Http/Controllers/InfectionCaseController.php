@@ -110,7 +110,10 @@ class InfectionCaseController extends Controller
     public function deleteform(string $id)
     {
         $infectionCase = InfectionCase::find($id);
-        return view('infectionCases.deleteform',compact('infectionCase'));
+        $patients = Patient::all();
+        $pandemics = Pandemic::all();
+        $healthCenters = HealthCenter::all();
+        return view('infectionCases.deleteform',compact('infectionCase','patients','pandemics','healthCenters'));
 
     }
     /**

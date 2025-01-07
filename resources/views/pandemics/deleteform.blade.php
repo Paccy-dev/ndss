@@ -15,7 +15,7 @@
             <p> Are you sure you want to delete Pandemic: "{{ $pandemic->full_name}}" ?</p>
         </div>
         <button type="submit">Delete</button>
-        <button>Cancel</button>
+        <a href="/">Cancel</a>
     </form>   
   </body>
 </html>

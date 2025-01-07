@@ -2,10 +2,10 @@
 @section('page_title')
     Dashboard
 @stop
-@section('content_header')
+@section('page_header')
     Dashboard header
 @stop
-@section('content')
+@section('page_content')
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-3 col-md-6">
