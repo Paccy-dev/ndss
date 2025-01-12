@@ -35,6 +35,22 @@ Patient Update
                 <input type="number" name="id_no" value="{{$patient->id_no}}" class="form-control">
               </div>  
               <div class="form-group col-sm-6">
+                <p>Contacts(Optional)</p>        
+                <input type="number" name="contacts" value="{{$patient->contacts}}" class="form-control">
+              </div>  
+              <div class="form-group col-sm-6">
+                <p>Occupation(Optional)</p>        
+                <input type="text" name="occupation" value="{{$patient->occupation}}" class="form-control">
+              </div>  
+              <div class="form-group col-sm-6">
+                <p>insurance(Optional)</p>        
+                <input type="text" name="insurance_provider" value="{{$patient->insurance_provider}}" class="form-control">
+              </div>  
+              <div class="form-group col-sm-6">
+                <p>Insurance ID(Optional)</p>        
+                <input type="number" name="insurance_id" value="{{$patient->insurance_id}}" class="form-control">
+              </div>  
+              <div class="form-group col-sm-6">
                 <p>Gender</p>      
                 <input type="radio" name="gender" value="{{$patient->gender}}" required>
                   <label for="">Male</label>

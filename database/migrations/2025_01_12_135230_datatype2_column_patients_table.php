@@ -11,13 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('patients', function (Blueprint $table) {
-            $table->id();
-            $table->string('full_name');
-            $table->string('birth_place');
-            $table->date('birth_date');
-            $table->timestamps();
-        });
+        //
     }
 
     /**
@@ -25,6 +19,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('patients');
+        Schema::table('patients', function (Blueprint $table) {
+            $table->decimal('insurance_id')->null(true);
+        });
     }
 };

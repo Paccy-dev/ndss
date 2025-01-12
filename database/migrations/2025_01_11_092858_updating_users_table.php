@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('patients', function (Blueprint $table) {
-            $table->id();
-            $table->string('full_name');
-            $table->string('birth_place');
-            $table->date('birth_date');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->boolean('is_superUser')->default(False);
+            $table->boolean('is_dataManager')->default(False);
+            $table->boolean('is_healthCenterManager')->default(False);
+            $table->boolean('is_public')->default(True);
         });
     }
 
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('patients');
+        //
     }
 };
