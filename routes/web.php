@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\PatientController;
@@ -12,10 +13,13 @@ use App\Http\Controllers\InfectionCaseController;
 Route::get('/charts', [GeneralController::class, 'index'] )->name('charts');
 
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/', function () {
+//     return view('dashboard');
+// })->name('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+Route::get('', [GeneralController::class,'index'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -60,3 +64,12 @@ Route::get('/infectionCases/{id}/update',[InfectionCaseController::class,'update
 Route::put('/infectionCases/{id}/update',[InfectionCaseController::class,'update'])->name('infectionCases.update');
 Route::get('/infectionCases/{id}/delete',[InfectionCaseController::class,'deleteform'])->name('infectionCases.deleteform');
 Route::delete('/infectionCases/{id}/delete',[InfectionCaseController::class,'delete'])->name('infectionCases.delete');
+
+Route::get('/users',[RegisteredUserController::class,'index'])->name('users.index');
+Route::get('/users/create',[RegisteredUserController::class,'createform'])->name('users.createform');
+Route::post('/users/create',[RegisteredUserController::class,'create'])->name('users.create');
+Route::get('/users/{id}',[RegisteredUserController::class,'show'])->name('users.show');
+Route::get('/users/{id}/update',[RegisteredUserController::class,'updateform'])->name('users.updateform');
+Route::put('/users/{id}/update',[RegisteredUserController::class,'update'])->name('users.update');
+Route::get('/users/{id}/delete',[RegisteredUserController::class,'deleteform'])->name('users.deleteform');
+Route::delete('/users/{id}/delete',[RegisteredUserController::class,'delete'])->name('users.delete');

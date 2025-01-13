@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_superUser',
+        'is_dataManager',
+        'is_healthCenterManager',
+        'is_public'
     ];
 
     /**

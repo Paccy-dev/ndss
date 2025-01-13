@@ -42,7 +42,7 @@
             <!-- Navigation -->
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">NDSS</a>
+                    <a class="navbar-brand" href="">NDSS</a>
                 </div>
 
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -65,7 +65,7 @@
                             <li>
                                 <a href="#">
                                     <div>
-                                        <i class="fa fa-comment fa-fw"></i> New Comment
+                                        <i class="fa fa-bars fa-fw"></i> Apporals requests
                                         <span class="pull-right text-muted small">4 minutes ago</span>
                                     </div>
                                 </a>
@@ -73,31 +73,7 @@
                             <li>
                                 <a href="#">
                                     <div>
-                                        <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                        <span class="pull-right text-muted small">12 minutes ago</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                        <span class="pull-right text-muted small">4 minutes ago</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <i class="fa fa-tasks fa-fw"></i> New Task
-                                        <span class="pull-right text-muted small">4 minutes ago</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                        <i class="fa fa-user-plus fa-fw"></i> User requests
                                         <span class="pull-right text-muted small">4 minutes ago</span>
                                     </div>
                                 </a>
@@ -105,16 +81,18 @@
                             <li class="divider"></li>
                             <li>
                                 <a class="text-center" href="#">
-                                    <strong>See All Alerts</strong>
+                                    <strong>See All Notifications</strong>
                                     <i class="fa fa-angle-right"></i>
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw"></i> secondtruth <b class="caret"></b>
-                        </a>
+                        @if ( auth()->user())
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-user fa-fw"></i> {{ auth()->user()->name}} <b class="caret"></b>
+                            </a>
+                        @endif
                         <ul class="dropdown-menu dropdown-user">
                             <li>
                                 <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -150,17 +128,6 @@
                             <a href="{{ route('dashboard') }}" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="{{ route('charts') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Charts <span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="{{ route('charts') }}">Morris.js Charts</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                        </li>
-                        <li>
                             <a href="{{ route('patients.index')}}"><i class="fa fa-heart fa-fw"></i> Patients</a>
                         </li>
                         <li>
@@ -174,15 +141,8 @@
                             <a href="{{ route('infectionCases.index')}}"><i class="fa fa-stethoscope fa-fw"></i> Infection Cases</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i> Users <span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="morris.html">Morris.js Charts</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a href="{{ route('users.index') }}"><i class="fa fa-users fa-fw"></i> Users</a>
                         </li>
-                        <li>
                         <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Other Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

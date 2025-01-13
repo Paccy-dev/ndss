@@ -21,6 +21,10 @@ Patient Details
             <p> ID No:  </p>
             <p> GENDER:</p>
             <p> MARITAL STATUS:</p>
+            <p> CONTACTS:</p>
+            <p> OCCOPATION:</p>
+            <p> INSURANCE PROVIDER:</p>
+            <p> INSURANCE ID:</p>
           </div>
           <div class="col col-sm-6">
             <p>{{$patient->full_name}}</p>
@@ -29,6 +33,10 @@ Patient Details
             <p>{{$patient->id_no}}</p>
             <p>{{$patient->gender}}</p>
             <p>{{$patient->marital_status}}</p>
+            <p>{{$patient->contacts}}</p>
+            <p>{{$patient->occupation}}</p>
+            <p>{{$patient->insurance_provider}}</p>
+            <p>{{$patient->insurance_id}}</p>
           </div>
         </div>
       </div>

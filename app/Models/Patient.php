@@ -13,6 +13,10 @@ class Patient extends Model
         'gender',
         'marital_status',
         'id_no',
+        'contacts',
+        'occupation',
+        'insurance_provider',
+        'insurance_id'
     ];
     public function infectionCases()
     {
