@@ -2,6 +2,8 @@
 @section('page_title')
 Register
 @stop
+@section('page_css')
+@endsection
 @section('page_header')
 User Register
 @stop
@@ -22,22 +24,24 @@ User Register
                     <fieldset>
                         <div class="form-group">
                             <input class="form-control" name="name" placeholder="Name" type="text" required>
+                            <x-input-error :messages="$errors->get('name')" class="mt-2 error-message" />
                         </div>
                         <div class="form-group">
                             <input class="form-control" name="email" placeholder="E-mail" type="email" required>
+                            <x-input-error :messages="$errors->get('email')" class="mt-2 error-message" />
                         </div>
                         <div class="form-group">
                             <input class="form-control" name="password" placeholder="Password" type="password" required>
-                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-
+                            <x-input-error :messages="$errors->get('password')" class="mt-2 error-message" />
                         </div>
                         <div class="form-group">
                             <input class="form-control" name="password_confirmation" placeholder="Password Confirmation" type="password" required>
-                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2 error-message" />
                         </div>
                         <div class="form-group form">
+                            <p for="">Set user permission(s):</p>
                             <div class="col col-sm-1"></div>
-                            <div class="col col-sm-10 checkbox">
+                            <div class="col col-sm-10 checkbox" style="border: 1px solid; border-color: rgb(223, 223, 223); padding: 15px;">
                                 <label class="col col-sm-6">
                                     <input type="checkbox" name=" is_superUser">is_Super User
                                 </label>

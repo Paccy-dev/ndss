@@ -1,13 +1,14 @@
 @extends('layouts.master')
 @section('page_title')
-  Users
+  Users Permissions
 @stop
 @section('page_header')
-  Users
+  Users who has: "{{ $permission}}" permissions
 @stop
 @section('page_content')
-    <a class="btn btn-success" href="{{ route('register')}}"><i class="fa fa-plus fa-success"></i> New Entry</a>
-    <div class="row">
+<a class="btn btn-success" href="{{ route('register')}}"><i class="fa fa-plus fa-success"></i> New Entry</a>
+<a class="btn btn-info" href="{{ route('users.permissionsindex')}}"><i class="fa fa-arrow-circle-o-left"></i> Back</a>
+<div class="row">
       <div class="col-lg-12">
           <div class="panel panel-default">
               <div class="panel-heading">
@@ -19,17 +20,15 @@
                       <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                           <thead>
                               <tr>
-                                <th>#</th>
-                                <th>Full_name</th>
-                                <th>Email</th>
+                                  <th>Full_name</th>
+                                  <th>Email - {{$permission}}</th>
                                   <th>Permissions</th>
                                   <th>Actions</th>
                               </tr>
                           </thead>
                           <tbody>
-                            @foreach ($users as $index=>$user)
+                            @foreach ($users as $user)
                               <tr class="odd gradeX">
-                                <td>{{ $index+1 }}</td>
                                 <td><a href="{{ route('users.show',$user->id) }}">{{$user->name}}</a></td>
                                 <td>{{$user->email}}</td>
                                 <td>

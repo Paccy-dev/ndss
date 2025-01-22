@@ -23,7 +23,8 @@ Route::get('', [GeneralController::class,'index'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile/{id}/update', [RegisteredUserController::class, 'update'])->name('profile.update');
+    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
@@ -68,8 +69,10 @@ Route::delete('/infectionCases/{id}/delete',[InfectionCaseController::class,'del
 Route::get('/users',[RegisteredUserController::class,'index'])->name('users.index');
 Route::get('/users/create',[RegisteredUserController::class,'createform'])->name('users.createform');
 Route::post('/users/create',[RegisteredUserController::class,'create'])->name('users.create');
+Route::get('/users/permissions',[GeneralController::class,'permissionsindex'])->name('users.permissionsindex');
+Route::get('/users/permissions/{id}',[GeneralController::class,'permissionsshow'])->name('users.permissionsshow');
 Route::get('/users/{id}',[RegisteredUserController::class,'show'])->name('users.show');
 Route::get('/users/{id}/update',[RegisteredUserController::class,'updateform'])->name('users.updateform');
-Route::put('/users/{id}/update',[RegisteredUserController::class,'update'])->name('users.update');
+Route::patch('/users/{id}/update',[RegisteredUserController::class,'update'])->name('users.update');
 Route::get('/users/{id}/delete',[RegisteredUserController::class,'deleteform'])->name('users.deleteform');
 Route::delete('/users/{id}/delete',[RegisteredUserController::class,'delete'])->name('users.delete');

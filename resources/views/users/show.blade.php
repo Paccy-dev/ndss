@@ -23,16 +23,16 @@ Patient Details
             <p>{{$user->name}}</p>
             <p>{{$user->email}}</p>
               @if ($user->is_superUser)
-                <span class="btn-warning btn-outline btn-xs">Super User</span>
+                <span class="btn-warning btn-outline btn-xs">| Super User |</span>
               @endif
               @if($user->is_dataManager)
-                <span class="btn-danger btn-outline btn-xs ">Data Manager</span>
+                <span class="btn-danger btn-outline btn-xs ">| Data Manager| </span>
               @endif
               @if($user->is_healthCenterManager)
-                <span class="btn-info btn-outline btn-xs">HealthCenter Manager</span>
+                <span class="btn-info btn-outline btn-xs">| HealthCenter Manager |</span>
               @endif
               @if($user->is_public)
-                <span class="btn-default btn-outline btn-xs">Public</span>
+                <span class="btn-default btn-outline btn-xs">| Public |</span>
               @endif
             </td>
             </p>

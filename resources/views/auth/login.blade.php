@@ -18,10 +18,11 @@ Login
                     <fieldset>
                         <div class="form-group">
                             <input class="form-control" placeholder="E-mail" name="email" type="email">
+                            <x-input-error :messages="$errors->get('email')" class="mt-2 error-message" />
                         </div>
                         <div class="form-group">
                             <input class="form-control" placeholder="Password" name="password" type="password">
-                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('password')" class="mt-2 error-message" />
                         </div>
                         <div class="form-group">
                             <div class="checkbox">

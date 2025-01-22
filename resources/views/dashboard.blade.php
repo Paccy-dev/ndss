@@ -13,7 +13,7 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-heart fa-5x"></i>
+                            <i class="fa fa-heart-o fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge">{{$patients->count()}}</div>

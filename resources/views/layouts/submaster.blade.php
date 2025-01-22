@@ -10,6 +10,8 @@
 
         <title>@yield('page_title')</title>
 
+        <!-- Bootstrap my CSS -->
+        @vite(['resources/css/validate.css'])
         <!-- Bootstrap Core CSS -->
         @vite(['resources/css/bootstrap.min.css'])
         <!-- MetisMenu CSS -->

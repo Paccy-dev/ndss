@@ -10,6 +10,9 @@
 
         <title>@yield('page_title')</title>
 
+        @yield('page_css')
+        <!-- Bootstrap my CSS -->
+        @vite(['resources/css/validate.css'])
         <!-- Bootstrap Core CSS -->
         @vite(['resources/css/bootstrap.min.css'])
         <!-- MetisMenu CSS -->
@@ -57,6 +60,7 @@
                 </ul>
 
                 <ul class="nav navbar-right navbar-top-links">
+                    @if ( auth()->user())
                     <li class="dropdown navbar-inverse">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
@@ -87,24 +91,29 @@
                             </li>
                         </ul>
                     </li>
+                    @endif
                     <li class="dropdown">
                         @if ( auth()->user())
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                 <i class="fa fa-user fa-fw"></i> {{ auth()->user()->name}} <b class="caret"></b>
                             </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li>
+                                    <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                                </li>
+                            </ul>
+                        @else
+                            <li>
+                                <a href="login"><i class="fa fa-sign-in fa-fw"></i> Login</a>
+                            </li>
                         @endif
-                        <ul class="dropdown-menu dropdown-user">
-                            <li>
-                                <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                            </li>
-                        </ul>
                     </li>
                 </ul>
                 <!-- /.navbar-top-links -->
@@ -141,19 +150,16 @@
                             <a href="{{ route('infectionCases.index')}}"><i class="fa fa-stethoscope fa-fw"></i> Infection Cases</a>
                         </li>
                         <li>
-                            <a href="{{ route('users.index') }}"><i class="fa fa-users fa-fw"></i> Users</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Other Pages<span class="fa arrow"></span></a>
+                            <a><i class="fa fa-files-o fa-fw"></i> User management<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{ route('login')}} ">Login Page</a>
+                                    <a href="{{ route('users.index')}} "><i class="fa fa-user-o"></i> Users</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('register')}} ">Register Page</a>
+                                    <a href="{{ route('register')}} "><i class="fa fa-user-plus"></i> User creation</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('profile.edit')}}">Profile Page</a>
+                                    <a href="{{ route('users.permissionsindex')}} "><i class="fa fa-user-o"></i> User permissions</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -182,6 +188,7 @@
 
         </div>
         <!-- /#wrapper -->
+        @yield('page_script')
 
         <!-- jQuery -->
         @vite(['resources/js/jquery.min.js'])
@@ -215,7 +222,6 @@
                 });
             });
         </script>
-
     </body>
 
 </html>

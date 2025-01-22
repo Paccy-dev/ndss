@@ -43,7 +43,8 @@ class RegisteredUserController extends Controller
             'is_superUser' => $request->has('is_superUser'),
             'is_dataManager' => $request->has('is_dataManager'),
             'is_healthCenterManager' => $request->has('is_healthCenterManager'),
-            'is_public' => $request->has('is_public'),
+            // 'is_public' => $request->has('is_public'),
+            'is_public' => True,
  
         ]);
  
@@ -108,20 +109,34 @@ class RegisteredUserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([]);
-        $user = User::find($id);
-        // $user->update($request->all());
-        $user = User::update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'is_superUser' => $request->has('is_superUser'),
-            'is_dataManager' => $request->has('is_dataManager'),
-            'is_healthCenterManager' => $request->has('is_healthCenterManager'),
-            'is_public' => $request->has('is_public'),
- 
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
         ]);
 
-        return redirect()->route('user.index')
+        $user = User::find($id);
+
+        $user_email = $user->email;
+        $email = $request->email;
+        
+        if ($email != $user_email) {
+            $request->validate([
+                'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            ]);
+        }
+       
+        $request->validate([]);
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->is_superUser = $request->has('is_superUser');
+        $user->is_dataManager = $request->has('is_dataManager');
+        $user->is_healthCenterManager = $request->has('is_healthCenterManager');
+        // $user->is_public = $request->has('is_public'); 
+        $user->is_public = True; 
+        $user->save();
+        
+
+        return redirect()->route('users.index')
         ->with('success','Patient updated successfully');
     }
 }

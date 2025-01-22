@@ -1,9 +1,9 @@
 @extends('layouts.master')
 @section('page_title')
-Infection Ceses
+Infection Cases
 @stop
 @section('page_header')
-Infection case Details
+Infection Case Details
 @stop
 @section('page_content')
 <div class="row">
