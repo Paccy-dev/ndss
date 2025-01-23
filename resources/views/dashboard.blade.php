@@ -2,6 +2,11 @@
 @section('page_title')
     Dashboard
 @stop
+@section('page_css')
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+@endsection
 @section('page_header')
     Dashboard header
 @stop
@@ -102,10 +107,10 @@
     </div>
     <!-- /.row -->
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Bar Chart 
                     <div class="pull-right">
                         <div class="btn-group">
                             <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -129,13 +134,18 @@
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <div id="morris-area-chart"></div>
+                    
+                    <div id="bar-example"></div>
+
                 </div>
                 <!-- /.panel-body -->
             </div>
             <!-- /.panel -->
+        </div>
+        <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-bar-chart-o fa-fw"></i> Bar Chart Example
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart
                     <div class="pull-right">
                         <div class="btn-group">
                             <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -159,14 +169,82 @@
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <!-- /.row -->
+                    
+                    <div id="area-example"></div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Line Chart
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                Actions
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                                <li><a href="#">Refresh</a>
+                                </li>
+                                <li><a href="#">Select time</a>
+                                </li>
+                                <li><a href="#">Select location</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="#">Download graph</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <!-- /.row -->
+                    
+                    <div id="line-example"></div>
+
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Pie Chart
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                Actions
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                                <li><a href="#">Refresh</a>
+                                </li>
+                                <li><a href="#">Select time</a>
+                                </li>
+                                <li><a href="#">Select location</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="#">Download graph</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <!-- /.row -->
+                    
+                    <div id="donut-example"></div>
+
                 </div>
                 <!-- /.panel-body -->
             </div>
         </div>
-        <!-- /.col-lg-8 -->
-        <div class="col-lg-4">
-        </div>
-        <!-- /.col-lg-4 -->
     </div>
     <!-- /.row -->
 
@@ -321,3 +399,151 @@
         <!-- /.col-lg-6 -->
     </div>
 @stop
+@section('page_script')
+{{-- Script for bar chart --}}
+<script>
+    function myFunction(){
+        const date = new Date();
+        var day = date.getDay();
+        const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday','Sunday'];
+        const dayOfWeek = daysOfWeek[day]
+        // console.log(day); // Outputs the day of the month (1-31)
+        // console.log(dayOfWeek); // Outputs the day of the week ()
+        var daysListing = [];
+        for( i=0; i<7; i++){
+            if (day == 8){
+                day=1;
+            }
+            daysListing.push(daysOfWeek[day]);
+            // console.log(day);
+            day = day +1 ;
+        }
+        console.log(daysListing);
+        var dataDict = []
+        daysListing.forEach(dayListing => {
+            // console.log(dayListing)
+            dataDict.push(
+                { y: '2006', a: 100, b: 20, c: 20 },
+            )
+        });
+        console.log(dataDict);
+    }
+    window.onload = myFunction;
+    
+   
+
+    Morris.Bar({
+    element: 'bar-example',
+    data: [
+        { y: '2006', a: 100, b: 20, c: 20 },
+        { y: '2007', a: 75,  b: 65, c: 45 },
+        { y: '2008', a: 50,  b: 40, c: 72 },
+        { y: '2009', a: 75,  b: 65, c: 66 },
+        { y: '2010', a: 50,  b: 40, c: 44 },
+        { y: '2011', a: 75,  b: 65, c: 40 },
+        { y: '2012', a: 100, b: 90, c: 72 },
+    ],
+    
+
+  xkey: 'y',
+  ykeys: ['a', 'b', 'c'],
+  labels: ['Series A', 'Series B', 'Series C']
+
+});
+</script>
+<script>
+    Morris.Line({
+  element: 'line-example',
+  data: [
+    { y: '2006', a: 100, b: 90, c: 20 },
+    { y: '2007', a: 75,  b: 65, c: 75 },
+    { y: '2008', a: 50,  b: 40 },
+    { y: '2009', a: 75,  b: 65 },
+    { y: '2010', a: 50,  b: 40 },
+    { y: '2011', a: 75,  b: 65 },
+    { y: '2012', a: 100, b: 90 }
+  ],
+  xkey: 'y',
+  ykeys: ['a', 'b'],
+  labels: ['Series A', 'Series B']
+});
+</script>
+<script>
+    Morris.Area({
+      element: 'area-example',
+  data: [
+    { y: '2006', a: 100, b: 90 },
+    { y: '2007', a: 75,  b: 65 },
+    { y: '2008', a: 50,  b: 40 },
+    { y: '2009', a: 75,  b: 65 },
+    { y: '2010', a: 50,  b: 40 },
+    { y: '2011', a: 75,  b: 65 },
+    { y: '2012', a: 100, b: 90 }
+  ],
+  xkey: 'y',
+  ykeys: ['a', 'b'],
+  labels: ['Series A', 'Series B']
+});
+</script>
+<script>
+    Morris.Donut({
+  element: 'donut-example',
+  data: [
+    {label: "Download Sales", value: 12},
+    {label: "In-Store Sales", value: 30},
+    {label: "Mail-Order Sales", value: 20},
+    {label: "New-Order Sales", value: 15}
+  ]
+});
+</script>
+@endsection
+<script>
+    function validateDate() { 
+      //** Getting the date input from user);
+  
+      console.log("Date changed!")
+      input = document.getElementById('date_input')
+      error_msg = document.getElementById('error_msg')
+      // error_msg.textContent = '';
+  
+      //** Extracting the value for the input
+  
+      dateInput = input.value // This is the actual date entered by the user
+      console.log('date input',dateInput)
+  
+      //** Getting the today date from the system
+  
+      today = new Date();
+      // console.log('date time today:',today)
+      stringToday = today.toISOString()
+      // console.log('string today:',today_string)
+  
+      //** Formatting the system date as the input
+      array = stringToday.split('T')
+      dateToday = array[0]
+      console.log('date today',dateToday)
+      timeToday = array[1] // This is the actual date of today
+      // console.log('time today',timeToday)
+  
+      //** Function to show the error message and clear the date box
+        function showError() {          
+          error_msg.textContent = 'Future date not accepted'
+          input.focus();
+          input.value = ''
+          return;
+        }
+  
+      //** Function to hide the error message
+        function hideError() {          
+          error_msg.textContent = ''
+          input.focus();
+          return;
+        }
+      //** Condition to evaluate the date value
+      if (dateInput > dateToday) {
+        showError();
+      }else {
+        hideError();
+      }
+  }
+  </script>

@@ -99,7 +99,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-user">
                                 <li>
-                                    <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                                    <a href="{{ route('users.update', auth()->user()->id) }} " ><i class="fa fa-user fa-fw"></i> User Profile</a>
                                 </li>
                                 <li>
                                     <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
@@ -207,12 +207,12 @@
         <!-- Custom Theme JavaScript -->
         @vite(['resources/js/startmin.js'])
 
-        <!-- DataTables JavaScript -->
-        @vite(['resources/js/dataTables/jquery.dataTables.min.js'])
-        @vite(['resources/js/dataTables/dataTables.bootstrap.min.js'])
-
         <!-- Custom Theme JavaScript -->
         @vite(['resources/js/startmin.js'])'
+
+        <!-- DataTables JavaScript -->
+        {{-- @vite(['resources/js/dataTables/jquery.dataTables.min.js'])
+        @vite(['resources/js/dataTables/dataTables.bootstrap.min.js']) --}}
 
         <!-- Page-Level Demo Scripts - Tables - Use for reference -->
         <script>
