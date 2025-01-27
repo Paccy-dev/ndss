@@ -20,8 +20,17 @@ class PatientController extends Controller
      */
     public function createform(Request $request)
     {
-    
-        return view('patients.createform');
+        $insurances = [
+            '1) Mutuelle de Santé' => '1) Mutuelle de Santé',
+            '2) Radiant Insurance' => '2) Radiant Insurance',
+            '3) Prime Insurance' => '3) Prime Insurance',
+            '4) Old Mutual'=> '4) Old Mutual',
+            '5) Allianz'=> '5) Allianz',
+            '6) MSH International' => '6) MSH International',
+            "7) Rwandaise d'Assurance Maladie (RAMA)"=> "7) Rwandaise d'Assurance Maladie (RAMA)",
+            "8) Military Medical Insurance (MMI)"=> "8) Military Medical Insurance (MMI)",
+        ];
+        return view('patients.createform',compact('insurances'));
 
     }
 
@@ -52,8 +61,19 @@ class PatientController extends Controller
      */
     public function updateform(string $id)
     {
+        $insurances = [
+            '1) Mutuelle de Santé' => '1) Mutuelle de Santé',
+            '2) Radiant Insurance' => '2) Radiant Insurance',
+            '3) Prime Insurance' => '3) Prime Insurance',
+            '4) Old Mutual'=> '4) Old Mutual',
+            '5) Allianz'=> '5) Allianz',
+            '6) MSH International' => '6) MSH International',
+            "7) Rwandaise d'Assurance Maladie (RAMA)"=> "7) Rwandaise d'Assurance Maladie (RAMA)",
+            "8) Military Medical Insurance (MMI)"=> "8) Military Medical Insurance (MMI)",
+        ]; 
+
         $patient = Patient::find($id);
-        return view('patients.updateform',compact('patient'));
+        return view('patients.updateform',compact('patient','insurances'));
 
     }
 

@@ -40,24 +40,29 @@ Patient Create
                   <p class="error-message" id="error_msg"></p>
                 </div>  
                 <div class="form-group col-sm-6">
-                  <p>ID No(Optional)</p>        
-                  <input type="number" name="id_no" class="form-control">
+                  <p>ID No</p>        
+                  <input type="number" name="id_no" class="form-control" id="id_no" required>
                 </div>  
                 <div class="form-group col-sm-6">
-                  <p>Contacts(Optional)</p>        
-                  <input type="number" name="contacts" class="form-control">
+                  <p>Contacts</p>        
+                  <input type="number" name="contacts" class="form-control" required>
                 </div>  
                 <div class="form-group col-sm-6">
-                  <p>Occupation(Optional)</p>        
-                  <input type="text" name="occupation" class="form-control">
+                  <p>Occupation</p>        
+                  <input type="text" name="occupation" class="form-control" required>
                 </div>  
                 <div class="form-group col-sm-6">
-                  <p>insurance(Optional)</p>        
-                  <input type="text" name="insurance_provider" class="form-control">
+                  <p>Insurance</p>        
+                  <select name="insurance_provider" id="" class="form-control" required>
+                    <option value="">Please select</option>
+                    @foreach ($insurances as $insurance)
+                        <option value="{{$insurance}}">{{$insurance}}</option>
+                    @endforeach
+                  </select>
                 </div>  
                 <div class="form-group col-sm-6">
-                  <p>Insurance ID(Optional)</p>        
-                  <input type="number" name="insurance_id" class="form-control">
+                  <p>Insurance ID</p>        
+                  <input type="number" name="insurance_id" class="form-control" required>
                 </div>  
                 <div class="form-group col-sm-6">
                   <p>Gender</p>      
@@ -138,5 +143,25 @@ Patient Create
     }
 }
 </script>
+<script>
+  function onKeyPressEventHandler(event) {
+    if (event.target.value.length >= 16) {
+        event.preventDefault(); // Stops further input
+        console.log('Input cannot exceed 16 digits.');
+    }
+}
 
+document.getElementById('id_no').addEventListener('keypress', onKeyPressEventHandler);
+
+</script>
+<script>
+  function onKeyPressEventHandler(event) {
+    if (event.target.value.length >= 16) {
+        event.preventDefault(); // Stops further input
+        console.log('Input cannot exceed 16 digits.');
+    }
+}
+
+document.getElementById('id_no').addEventListener('keypress', onKeyPressEventHandler);
+</script>
 @stop
