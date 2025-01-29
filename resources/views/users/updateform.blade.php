@@ -27,6 +27,7 @@ User Update
                         <div class="form-group">
                             <input class="form-control" name="name" placeholder="Name" type="text" value="{{ $user->name}}" required>
                             <x-input-error :messages="$errors->get('name')" class="mt-2 error-message" />
+                        </div>
                         <div class="form-group">
                             <input class="form-control" name="email" placeholder="E-mail" type="email" required value="{{ $user->email}}">
                             <x-input-error :messages="$errors->get('email')" class="mt-2 error-message" />
@@ -48,25 +49,43 @@ User Update
                                     </div>
                                 @endif
                         </div>
-                        <div class="form-group form">
-                            <p for="">Update user permission(s):</p>
-                            <div class="col col-sm-1"></div>
-                            <div class="col col-sm-10 checkbox" style="border: 1px solid; border-color: rgb(223, 223, 223); padding: 15px;">
-                                <label class="col col-sm-6">
-                                    <input type="checkbox" name=" is_superUser">is_Super User
-                                </label>
-                                <label class="col col-sm-6">
-                                    <input type="checkbox" name=" is_dataManager">is_Data Manager
-                                </label>
-                                <label class="col col-sm-6">
-                                    <input type="checkbox" name=" is_healthCenterManager">is_Health Center Manager
-                                </label>
-                                <label class="col col-sm-6">
-                                    <input type="checkbox" name=" is_public">is_Public
-                                </label>
+                        @if ( auth()->user()->is_superUser )
+                            <div class="form-group form">
+                                <p for="">Update user permission(s):</p>
+                                <div class="col col-sm-1"></div>
+                                <div class="col col-sm-10 checkbox" style="border: 1px solid; border-color: rgb(223, 223, 223); padding: 15px;">
+                                    <label class="col col-sm-6">
+                                        @if ( $user->is_superUser)
+                                            <input type="checkbox" name="is_superUser" checked='checked'>is_Super User
+                                        @else
+                                            <input type="checkbox" name="is_superUser">is_Super User
+                                        @endif
+                                    </label>
+                                    <label class="col col-sm-6">
+                                        @if ( $user->is_dataManager)
+                                            <input type="checkbox" name="is_dataManager" checked="checked">is_Data Manager
+                                        @else
+                                            <input type="checkbox" name="is_dataManager">is_Data Manager
+                                        @endif
+                                    </label>
+                                    <label class="col col-sm-6">
+                                        @if ( $user->is_healthCenterManager)
+                                            <input type="checkbox" name="is_healthCenterManager" checked="checked">is_Health Center Manager
+                                        @else
+                                            <input type="checkbox" name="is_healthCenterManager">is_Health Center Manager
+                                        @endif
+                                    </label>
+                                    <label class="col col-sm-6">
+                                        @if ( $user->is_Public)
+                                            <input type="checkbox" name="is_public" checked="checked">is_Public
+                                        @else
+                                            <input type="checkbox" name="is_public">is_Public
+                                        @endif
+                                    </label>
+                                </div>
+                                <div class="col col-sm-1"></div>
                             </div>
-                            <div class="col col-sm-1"></div>
-                        </div>
+                        @endif
                         <div class="form-group">
                             <button type="submit" class="btn btn-sm btn-success btn-block">Update User</button>
                         </div>

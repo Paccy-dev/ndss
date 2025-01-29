@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\PatientController;
@@ -8,6 +7,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PandemicController;
 use App\Http\Controllers\HealthCenterController;
 use App\Http\Controllers\InfectionCaseController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 
 Route::get('/charts', [GeneralController::class, 'index'] )->name('charts');
@@ -71,6 +72,11 @@ Route::get('/users/create',[RegisteredUserController::class,'createform'])->name
 Route::post('/users/create',[RegisteredUserController::class,'create'])->name('users.create');
 Route::get('/users/permissions',[GeneralController::class,'permissionsindex'])->name('users.permissionsindex');
 Route::get('/users/permissions/{id}',[GeneralController::class,'permissionsshow'])->name('users.permissionsshow');
+Route::get('users/register', [RegisteredUserController::class, 'create'])->name('register');
+Route::post('users/register', [RegisteredUserController::class, 'store'])->name('register');
+Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+Route::get('/users/{id}',[RegisteredUserController::class,'show'])->name('users.show');
 Route::get('/users/{id}',[RegisteredUserController::class,'show'])->name('users.show');
 Route::get('/users/{id}/update',[RegisteredUserController::class,'updateform'])->name('users.updateform');
 Route::patch('/users/{id}/update',[RegisteredUserController::class,'update'])->name('users.update');

@@ -85,7 +85,6 @@ Users Permissions
               <p> View Dashboard</p>
               <p> Manage Patients</p>
               <p> Manage Pandemics</p>
-              <p> Manage Infection Cases</p>
               <p> Manage Health Centers</p>
             </div>
           </div>

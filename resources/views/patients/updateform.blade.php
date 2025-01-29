@@ -46,7 +46,7 @@ Patient Update
               </div>  
               <div class="form-group col-sm-6">
                 <p>Contacts</p>        
-                <input type="number" name="contacts" value="{{$patient->contacts}}" class="form-control" required>
+                <input type="number" name="contacts" id="contacts" value="{{$patient->contacts}}" class="form-control" required>
               </div>  
               <div class="form-group col-sm-6">
                 <p>Occupation</p>        
@@ -63,21 +63,33 @@ Patient Update
               </div>  
               <div class="form-group col-sm-6">
                 <p>Insurance ID</p>        
-                <input type="number" name="insurance_id" value="{{$patient->insurance_id}}" class="form-control" required>
+                <input type="number" name="insurance_id" id="insurance_id" value="{{$patient->insurance_id}}" class="form-control" required>
               </div>  
               <div class="form-group col-sm-6">
-                <p>Gender</p>      
-                <input type="radio" name="gender" value="{{$patient->gender}}" required>
-                  <label for="">Male</label>
-                  <input type="radio" name="gender" value="{{$patient->gender}}" required>
-                  <label for="">Female</label> 
+                <p>Gender</p>
+                  @if ( $patient->gender == 'Male' )
+                    <input type="radio" name="gender" value="Male" required checked='checked'> Male
+                  @else
+                    <input type="radio" name="gender" value="Male" required> Male
+                  @endif   
+                  @if ( $patient->gender == 'Female')
+                    <input type="radio" name="gender" value="Female" required checked='checked'> Female
+                  @else
+                    <input type="radio" name="gender" value="Female" required> Female
+                  @endif  
               </div>   
               <div class="form-group col-sm-6">
-                <p>Marital Status</p>  
-                <input type="radio" name="marital_status" value="{{$patient->marital_status}}" required>
-                <label for="">Single</label>
-                <input type="radio" name="marital_status" value="{{$patient->gender_status}}" required>
-                <label for="">Married</label>     
+                <p>Marital Status</p>
+                @if ( $patient->marital_status == 'Single')
+                  <input type="radio" name="marital_status" value="Single" required checked="checked"> Single
+                @else
+                  <input type="radio" name="marital_status" value="Single" required> Single
+                @endif
+                @if ( $patient->marital_status == 'Married')
+                  <input type="radio" name="marital_status" value="Married" required checked="checked"> Married
+                @else
+                  <input type="radio" name="marital_status" value="Married" required> Married
+                @endif
               </div>  
               <div class="form-group col-sm-4"></div>
               <div class="form-group col-sm-4">
@@ -147,14 +159,26 @@ Patient Update
 </script>
 
 <script>
-  function onKeyPressEventHandler(event) {
+  function onidKeyPressEventHandler(event) {
     if (event.target.value.length >= 16) {
         event.preventDefault(); // Stops further input
         console.log('Input cannot exceed 16 digits.');
     }
 }
-
-document.getElementById('id_no').addEventListener('keypress', onKeyPressEventHandler);
-
+  function oncontactsKeyPressEventHandler(event) {
+    if (event.target.value.length >= 10) {
+        event.preventDefault(); // Stops further input
+        console.log('Input cannot exceed 16 digits.');
+    }
+}
+  function oninsuranceKeyPressEventHandler(event) {
+    if (event.target.value.length >= 10) {
+        event.preventDefault(); // Stops further input
+        console.log('Input cannot exceed 16 digits.');
+    }
+}
+document.getElementById('id_no').addEventListener('keypress', onidKeyPressEventHandler);
+document.getElementById('contacts').addEventListener('keypress', oncontactsKeyPressEventHandler);
+document.getElementById('insurance_id').addEventListener('keypress', oninsuranceKeyPressEventHandler);
 </script>
 @stop

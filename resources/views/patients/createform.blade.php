@@ -45,7 +45,7 @@ Patient Create
                 </div>  
                 <div class="form-group col-sm-6">
                   <p>Contacts</p>        
-                  <input type="number" name="contacts" class="form-control" required>
+                  <input type="number" id="contacts" name="contacts" class="form-control" required>
                 </div>  
                 <div class="form-group col-sm-6">
                   <p>Occupation</p>        
@@ -62,21 +62,17 @@ Patient Create
                 </div>  
                 <div class="form-group col-sm-6">
                   <p>Insurance ID</p>        
-                  <input type="number" name="insurance_id" class="form-control" required>
+                  <input type="number" id="insurance_id" name="insurance_id" class="form-control" required>
                 </div>  
                 <div class="form-group col-sm-6">
                   <p>Gender</p>      
-                    <input type="radio" name="gender" value="Male" required>
-                    <label for="">Male</label>
-                    <input type="radio" name="gender" value="Female" required>
-                    <label for="">Female</label> 
+                    <input type="radio" name="gender" value="Male" required> Male
+                    <input type="radio" name="gender" value="Female" required> Female
                 </div>   
                 <div class="form-group col-sm-6">
                   <p>Marital Status</p>        
-                  <input type="radio" name="marital_status" value="Single" required>
-                  <label for="">Single</label>
-                  <input type="radio" name="marital_status" value="Married" required>
-                  <label for="">Married</label>
+                  <input type="radio" name="marital_status" value="Single" required> Single
+                  <input type="radio" name="marital_status" value="Married" required> Married
                 </div>  
                 <div class="form-group col-sm-4"></div>
                 <div class="form-group col-sm-4">
@@ -155,13 +151,26 @@ document.getElementById('id_no').addEventListener('keypress', onKeyPressEventHan
 
 </script>
 <script>
-  function onKeyPressEventHandler(event) {
+  function onidKeyPressEventHandler(event) {
     if (event.target.value.length >= 16) {
         event.preventDefault(); // Stops further input
         console.log('Input cannot exceed 16 digits.');
     }
 }
-
-document.getElementById('id_no').addEventListener('keypress', onKeyPressEventHandler);
+  function oncontactsKeyPressEventHandler(event) {
+    if (event.target.value.length >= 10) {
+        event.preventDefault(); // Stops further input
+        console.log('Input cannot exceed 16 digits.');
+    }
+}
+  function oninsuranceKeyPressEventHandler(event) {
+    if (event.target.value.length >= 10) {
+        event.preventDefault(); // Stops further input
+        console.log('Input cannot exceed 16 digits.');
+    }
+}
+document.getElementById('id_no').addEventListener('keypress', onidKeyPressEventHandler);
+document.getElementById('contacts').addEventListener('keypress', oncontactsKeyPressEventHandler);
+document.getElementById('insurance_id').addEventListener('keypress', oninsuranceKeyPressEventHandler);
 </script>
 @stop

@@ -39,7 +39,8 @@
     </head>
 
     <body>
-
+        {{-- Fetting the authenticated user and storing the instance into a user varialbe --}}
+        <input type="hidden" value="{{$user= auth()->user()}}"> 
         <div id="wrapper">
 
             <!-- Navigation -->
@@ -60,8 +61,8 @@
                 </ul>
 
                 <ul class="nav navbar-right navbar-top-links">
-                    @if ( auth()->user())
-                    <li class="dropdown navbar-inverse">
+                    @if ( $user )
+                        {{-- <li class="dropdown navbar-inverse">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
                         </a>
@@ -90,10 +91,21 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                        </li> --}}
+                        @if ( $user->is_superUser)
+                            <btn class="btn btn-warning btn-sm btn-outline">Super User</btn>
+                        @endif
+                        @if ( $user->is_healthCenterManager)
+                            <btn class="btn btn-primary btn-sm btn-outline">Health Center Manager</btn>
+                        @endif
+                        @if ( $user->is_dataManager)
+                            <btn class="btn btn-danger btn-sm btn-outline">Data Manager</btn>
+                        @endif
+                    @else
+                        <btn class="btn btn-default btn-sm btn-outline">Public</btn>
                     @endif
                     <li class="dropdown">
-                        @if ( auth()->user())
+                        @if ( $user )
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                 <i class="fa fa-user fa-fw"></i> {{ auth()->user()->name}} <b class="caret"></b>
                             </a>
@@ -101,9 +113,9 @@
                                 <li>
                                     <a href="{{ route('users.update', auth()->user()->id) }} " ><i class="fa fa-user fa-fw"></i> User Profile</a>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                                </li>
+                                </li> --}}
                                 <li class="divider"></li>
                                 <li>
                                     <a href="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -136,34 +148,53 @@
                         <li>
                             <a href="{{ route('dashboard') }}" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
-                        <li>
-                            <a href="{{ route('patients.index')}}"><i class="fa fa-heart fa-fw"></i> Patients</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('pandemics.index')}}"><i class="fa fa-bug fa-fw"></i> Pandemics</a>
-                        </li>
-
-                        <li>
-                            <a href="{{ route('healthCenters.index')}}"><i class="fa fa-hospital-o fa-fw"></i> Health Centers</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('infectionCases.index')}}"><i class="fa fa-stethoscope fa-fw"></i> Infection Cases</a>
-                        </li>
-                        <li>
-                            <a><i class="fa fa-files-o fa-fw"></i> User management<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                        @if ( $user )
+                            @if ( $user->is_superUser || $user->is_healthCenterManager || $user->is_dataManager)
+                            <li>
+                                <a href="{{ route('patients.index')}}"><i class="fa fa-heart fa-fw"></i> Patients</a>
+                            </li>
+                            @endif
+                        @endif
+                        @if ( $user )
+                            @if ( $user->is_superUser || $user->is_healthCenterManager || $user->is_dataManager)
+                            <li>
+                                <a href="{{ route('pandemics.index')}}"><i class="fa fa-bug fa-fw"></i> Pandemics</a>
+                            </li>
+                            @endif
+                        @endif
+                        @if ( $user )
+                            @if ( $user->is_superUser || $user->is_healthCenterManager)
+                            <li>
+                                <a href="{{ route('healthCenters.index')}}"><i class="fa fa-hospital-o fa-fw"></i> Health Centers</a>
+                            </li>
+                            @endif
+                        @endif
+                        @if ( $user )
+                            @if ( $user->is_superUser || $user->is_dataManager)
+                            <li>
+                                <a href="{{ route('infectionCases.index')}}"><i class="fa fa-stethoscope fa-fw"></i> Infection Cases</a>
+                            </li>
+                            @endif
+                        @endif
+                        @if ( $user )
+                            @if ( $user->is_superUser )
                                 <li>
-                                    <a href="{{ route('users.index')}} "><i class="fa fa-user-o"></i> Users</a>
+                                    <a><i class="fa fa-files-o fa-fw"></i> User management<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li>
+                                            <a href="{{ route('users.index')}} "><i class="fa fa-user-o"></i> Users</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('register')}} "><i class="fa fa-user-plus"></i> User creation</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('users.permissionsindex')}} "><i class="fa fa-user-o"></i> User permissions</a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-second-level -->
                                 </li>
-                                <li>
-                                    <a href="{{ route('register')}} "><i class="fa fa-user-plus"></i> User creation</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('users.permissionsindex')}} "><i class="fa fa-user-o"></i> User permissions</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                            @endif
+                        @endif
                     </ul>
                 </div>
             </aside>
