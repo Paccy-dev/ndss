@@ -30,7 +30,7 @@ Login
                                     <input name="remember" type="checkbox" value="Remember Me">Remember Me
                                 </label>
                                 <label class="col col-sm-5">
-                                    <a href="Forgot Password">Forgot Password</a>
+                                    <a href="{{ route('forget.password.get') }}">Forgot Password</a>
                                 </label>
                             </div>  
                         </div>
