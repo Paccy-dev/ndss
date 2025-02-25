@@ -11,7 +11,7 @@
    
    You can reset your password from the link:
    <a href="{{ route('reset.password.get', $token) }}">Reset Password</a>	
-   <a href="google.com">Goole</a>	
+   <a href="google.com">Google</a>
     
 </body>
 </html>

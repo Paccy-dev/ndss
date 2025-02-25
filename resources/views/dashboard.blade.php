@@ -26,7 +26,19 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{ route('patients.index') }}">
+                @if (auth()->user())
+                    @if (auth()->user()->is_superUser)
+                        <a href="{{ route('patients.index') }}">
+                    @elseif (auth()->user()->is_healthCenterManager)
+                        <a href="{{ route('patients.index') }}">
+                    @elseif (auth()->user()->is_dataManager)
+                        <a href="{{ route('patients.index') }}">
+                    @else                    
+                        <a href="">
+                    @endif            
+                @else                    
+                    <a href="">
+                @endif
                     <div class="panel-footer">
                         <span class="pull-left">View Details</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -49,7 +61,19 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{ route('pandemics.index') }}">
+                    @if (auth()->user())
+                        @if (auth()->user()->is_superUser)
+                            <a href="{{ route('pandemics.index') }}">
+                        @elseif (auth()->user()->is_healthCenterManager)
+                            <a href="{{ route('pandemics.index') }}">
+                        @elseif (auth()->user()->is_dataManager)
+                            <a href="{{ route('pandemics.index') }}">
+                        @else                    
+                            <a href="">
+                        @endif            
+                    @else                    
+                        <a href="">
+                    @endif
                     <div class="panel-footer">
                         <span class="pull-left">View Details</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -72,7 +96,17 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{ route('healthCenters.index') }}">
+                @if (auth()->user())
+                    @if (auth()->user()->is_superUser)
+                        <a href="{{ route('healthCenters.index') }}">
+                    @elseif (auth()->user()->is_healthCenterManager)
+                        <a href="{{ route('healthCenters.index') }}">
+                    @else                    
+                        <a href="">
+                    @endif            
+                @else                    
+                    <a href="">
+                @endif
                     <div class="panel-footer">
                         <span class="pull-left">View Details</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -94,7 +128,19 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{ route('infectionCases.index')}}">
+                @if (auth()->user())
+                    @if (auth()->user()->is_superUser)
+                        <a href="{{ route('infectionCases.index')}}">
+                    @elseif (auth()->user()->is_healthCenterManager)
+                        <a href="{{ route('infectionCases.index')}}">
+                    @elseif (auth()->user()->is_dataManager)
+                        <a href="{{ route('infectionCases.index')}}">
+                    @else                    
+                        <a href="">
+                    @endif            
+                @else                    
+                    <a href="">
+                @endif
                     <div class="panel-footer">
                         <span class="pull-left">View Details</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -251,7 +297,19 @@
         <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <a href="{{ route('patients.index')}}" class="btn btn-primary">Patients</a>
+                    @if (auth()->user())
+                    @if (auth()->user()->is_superUser)
+                        <a href="{{ route('patients.index')}}" class="btn btn-primary">Patients</a>
+                    @elseif (auth()->user()->is_healthCenterManager)
+                        <a href="{{ route('patients.index')}}" class="btn btn-primary">Patients</a>
+                    @elseif (auth()->user()->is_dataManager)
+                        <a href="{{ route('patients.index')}}" class="btn btn-primary">Patients</a>
+                    @else                    
+                        <a href="" class="btn btn-primary">Patients</a>
+                    @endif            
+                @else                    
+                <a href="" class="btn btn-primary">Patients</a>
+                @endif
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -287,7 +345,21 @@
         <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <a href="{{ route('pandemics.index')}}" class="btn btn-success">Pandemics</a> 
+                    
+                    @if (auth()->user())
+                        @if (auth()->user()->is_superUser)
+                            <a href="{{ route('pandemics.index')}}" class="btn btn-success">Pandemics</a> 
+                        @elseif (auth()->user()->is_healthCenterManager)
+                            <a href="{{ route('pandemics.index')}}" class="btn btn-success">Pandemics</a> 
+                        @elseif (auth()->user()->is_dataManager)
+                            <a href="{{ route('pandemics.index')}}" class="btn btn-success">Pandemics</a> 
+                        @else                    
+                        <a href="" class="btn btn-success">Pandemics</a> 
+                        @endif            
+                    @else                    
+                        <a href="" class="btn btn-success">Pandemics</a> 
+                    @endif
+                    
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -325,7 +397,17 @@
         <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <a href="{{ route('healthCenters.index')}}" class="btn btn-warning">Health Centers</a>
+                    @if (auth()->user())
+                    @if (auth()->user()->is_superUser)
+                        <a href="{{ route('healthCenters.index')}}" class="btn btn-warning">Health Centers</a>
+                    @elseif (auth()->user()->is_healthCenterManager)
+                        <a href="{{ route('healthCenters.index')}}" class="btn btn-warning">Health Centers</a>
+                    @else                    
+                        <a href="" class="btn btn-warning">Health Centers</a>
+                    @endif            
+                @else                    
+                    <a href="" class="btn btn-warning">Health Centers</a>
+                @endif
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -361,7 +443,19 @@
         <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <a href="{{ route('infectionCases.index')}}" class="btn btn-danger">Infection Cases</a>
+                    @if (auth()->user())
+                    @if (auth()->user()->is_superUser)
+                        <a href="{{ route('infectionCases.index')}}" class="btn btn-danger">Infection Cases</a>
+                    @elseif (auth()->user()->is_healthCenterManager)
+                        <a href="{{ route('infectionCases.index')}}" class="btn btn-danger">Infection Cases</a>
+                    @elseif (auth()->user()->is_dataManager)
+                        <a href="{{ route('infectionCases.index')}}" class="btn btn-danger">Infection Cases</a>
+                    @else                    
+                        <a href="" class="btn btn-danger">Infection Cases</a>
+                    @endif            
+                @else                    
+                    <a href="" class="btn btn-danger">Infection Cases</a>
+                @endif
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
